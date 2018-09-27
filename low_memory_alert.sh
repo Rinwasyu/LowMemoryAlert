@@ -5,7 +5,7 @@ do
 	if [ $mem_free -lt 1024 ]
 	then
 		zenity \
-			--text "メモリが足りません\nあと"$mem_free"MBytes"\
+			--text "メモリが少ないです\n残り"$mem_free"MBytes"\
 			--timeout 5\
 			--warning\
 			--width 200\
