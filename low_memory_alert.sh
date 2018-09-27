@@ -1,0 +1,15 @@
+while true
+do
+	free_result=$(free -m)
+	mem_free=$(awk '{if($1 == "Mem:")print($4);}' <<< $free_result)
+	if [ $mem_free -lt 8000 ]
+	then
+		zenity \
+			--text "メモリが足りません\nあと"$mem_free"MBytes"\
+			--timeout 5\
+			--warning\
+			--width 200\
+			--height 100
+	fi
+	sleep 10s
+done
