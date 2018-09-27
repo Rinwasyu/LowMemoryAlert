@@ -2,7 +2,7 @@ while true
 do
 	free_result=$(free -m)
 	mem_free=$(awk '{if($1 == "Mem:")print($4);}' <<< $free_result)
-	if [ $mem_free -lt 8000 ]
+	if [ $mem_free -lt 1024 ]
 	then
 		zenity \
 			--text "メモリが足りません\nあと"$mem_free"MBytes"\
