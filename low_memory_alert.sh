@@ -2,8 +2,7 @@ mem_min_limit=512 # (MB)
 
 while true
 do
-	free_result=$(free -m)
-	mem_free=$(awk '{if($1 == "Mem:")print($4);}' <<< $free_result)
+	mem_free=$(free -m | awk '{if($1 == "Mem:")print($4);}')
 	if [ $mem_free -lt $mem_min_limit ]
 	then
 		zenity \
