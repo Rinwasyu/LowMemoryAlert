@@ -1,8 +1,10 @@
+mem_min_limit=512 # (MB)
+
 while true
 do
 	free_result=$(free -m)
 	mem_free=$(awk '{if($1 == "Mem:")print($4);}' <<< $free_result)
-	if [ $mem_free -lt 1024 ]
+	if [ $mem_free -lt $mem_min_limit ]
 	then
 		zenity \
 			--text "メモリが少ないです\n残り"$mem_free"MBytes"\
