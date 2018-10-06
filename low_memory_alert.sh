@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 mem_min_limit=512 # (MB)
 
 while true
