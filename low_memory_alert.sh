@@ -11,7 +11,7 @@ do
 	mem_free=$(free -m | awk '{if($1 == "Mem:")print($4);}')
 	if [ $mem_free -lt $warning_limit ]
 	then
-		if $auto_kill_enable
+		if $autokill_enable
 		then
 			if [ $mem_free -lt $autokill_limit ]
 			then
