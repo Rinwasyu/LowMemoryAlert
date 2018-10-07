@@ -1,12 +1,26 @@
 #!/usr/bin/env bash
 
-mem_min_limit=512 # (MB)
+warning_limit=512 # (MB)
+# Auto kill (Danger!)
+autokill_enable=false
+autokill_limit=48
+autokill_processes=('chromium-browse' 'helloworld')
 
 while true
 do
 	mem_free=$(free -m | awk '{if($1 == "Mem:")print($4);}')
-	if [ $mem_free -lt $mem_min_limit ]
+	if [ $mem_free -lt $warning_limit ]
 	then
+		if $auto_kill_enable
+		then
+			if [ $mem_free -lt $autokill_limit ]
+			then
+				for name in ${autokill_processes[@]}
+				do
+					kill $(pgrep -l $name | awk -v name=$name '{if($2==name)print($1);}')
+				done
+			fi
+		fi
 		zenity \
 			--text "メモリが少ないです\n残り"$mem_free"MBytes"\
 			--timeout 5\
