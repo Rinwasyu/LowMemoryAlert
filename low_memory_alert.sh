@@ -22,7 +22,7 @@ do
 			fi
 		fi
 		zenity \
-			--text "メモリが少ないです\n残り"$mem_free"MBytes"\
+			--text "Memory is low.\n"$mem_free"MBytes remaining."\
 			--timeout 5\
 			--warning\
 			--width 200\
