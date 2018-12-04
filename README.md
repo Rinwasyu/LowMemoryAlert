@@ -1,2 +1,6 @@
 # LowMemoryAlert
-Low memory alert for Ubuntu
+Warn of low memory.
+
+## Requirement
+- bash
+- zenity

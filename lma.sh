@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
-warning_limit=512 # (MB)
+warning_memoryLimit=512 # (MB)
 # Auto kill (Danger!)
-autokill_enable=false
-autokill_limit=48
-autokill_processes=('chromium-browse' 'helloworld')
+autokill_isEnabled=false
+autokill_memoryLimit=48
+autokilling_processes=('chromium' 'chromium-browse' 'helloworld')
 
 while true
 do
 	mem_free=$(free -m | awk '{if($1 == "Mem:")print($4);}')
-	if [ $mem_free -lt $warning_limit ]
+	if [ $mem_free -lt $warning_memoryLimit ]
 	then
-		if $autokill_enable
+		if $autokill_isEnabled
 		then
-			if [ $mem_free -lt $autokill_limit ]
+			if [ $mem_free -lt $autokill_memoryLimit ]
 			then
-				for name in ${autokill_processes[@]}
+				for name in ${autokilling_processes[@]}
 				do
 					kill $(pgrep -l $name | awk -v name=$name '{if($2==name)print($1);}')
 				done
